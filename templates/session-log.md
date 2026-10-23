@@ -31,9 +31,15 @@ For each retrieval, record a new context, the learner's answer, correct/incorrec
 
 ## Vocabulary in context
 
-| Expression | Meaning and collocation | Source or lesson context | Learner sentence | Next retrieval |
+| ID / expression / specific meaning | Collocation / source context | Learner sentence | Status / independent successes / production successes | Last review / next due |
 | --- | --- | --- | --- | --- |
-| | | | | |
+| | | | learning / recognized / usable / retained | |
+
+| Vocabulary ID | Date / mode | New retrieval prompt and actual response | Outcome / independent? | Next due |
+| --- | --- | --- | --- | --- |
+| | recognition / production | | correct / incorrect / assisted | |
+
+Check due items every session before adding up to three new expressions. Initial review is after 1 day, then 3/7/14 days after the first three independent delayed successes. Retained requires four delayed successes including two production attempts in new contexts; use a 30-day spot-check after that. Recognition alone has a maximum interval of 14 days. Errors reset the sequence and schedule tomorrow. Same-day, assisted, and copied answers do not advance retention. Keep missed reviews overdue for the next session.
 
 ## Preferences and next step
 

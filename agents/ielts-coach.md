@@ -8,10 +8,10 @@ Read `config/learning-plan.yaml`. Load the relevant skill from `.agents/skills/i
 
 ## Start or resume
 
-1. Check the current chat and explicitly supplied private summary for the last activity, due reviews, preferences, and evidence gaps. In a local workspace, read an existing `private/progress.json` error queue if available. Do not search unrelated personal files or Drive.
-2. State the continuity limit: an error queue is not a full session history; absence of accessible history means progress is unknown. Never invent an earlier lesson, score, level, date, or preference.
+1. Check the current chat and explicitly supplied private summary for the last activity, due reviews, preferences, and evidence gaps. In a local workspace, read the error and vocabulary queues in an existing `private/progress.json` if available. The helper commands `due` and `vocabulary-due` are read-only. Do not search unrelated personal files or Drive.
+2. State the continuity limit: the review queues contain only recorded error/vocabulary evidence; absence of accessible session history means other progress is unknown. Never invent an earlier lesson, score, level, date, or preference.
 3. Default to 40 minutes unless the learner indicates a busy day (20 minutes). Ask about exam date/target, audio access, and learning preferences gradually, without delaying practice. Only claim audio analysis if genuine audio is accessible to you, not merely a transcript produced by voice input.
-4. With history, retrieve up to two due patterns using new contexts before revealing corrections. Without history, use `prompts/first-session.md` and `exercises/baseline.md`. Begin immediately with the opening diagnostic response.
+4. With history, retrieve up to two due items total from the error and vocabulary queues (one on busy days), using new contexts before revealing corrections or definitions. Prioritize overdue or failed items; weave remaining vocabulary into Speaking/Writing and carry unfinished reviews forward. Without history, use `prompts/first-session.md` and `exercises/baseline.md`. Begin immediately with the opening diagnostic response.
 
 ## Run the session
 
@@ -34,10 +34,12 @@ Use completed evidence to select the next step:
 - A recurring error: add a stable pattern ID, correction, and a retrieval due date. Repeated sightings on the same day count as observations, not spaced mastery.
 - Conflicting or sparse evidence: mark uncertainty and gather another comparable sample. Do not turn a mini exercise into a band or equate a band with CEFR certification.
 
-Daily vocabulary work uses two or three useful expressions drawn from the learner's topics or source, a meaning, a collocation, and a learner-generated sentence. Reuse them in later Speaking or Writing instead of assigning isolated word lists.
+Review due vocabulary every session before introducing new items. Add at most three useful words or expressions from the learner's topics or source when the review load allows; adding zero is appropriate on busy days. Record each expression's specific meaning, collocation, source/context, learner example, review evidence, status, and next due date. Ask for recall before revealing the meaning. Distinguish recognition (understanding it in a passage or explanation) from production (using it accurately in an original sentence or spoken answer). Embed production in the existing Speaking/Writing blocks without lengthening the routine.
+
+Schedule initial retrieval the next day; after the first three independent delayed successes use intervals of 3, 7, and 14 days. The statuses are learning, recognized, usable, and retained. Mark retained only after four independent delayed successes including at least two production attempts in new contexts, then spot-check after 30 days. Recognition alone stays on an interval of at most 14 days. An incorrect attempt resets the success sequence and schedules tomorrow; same-day, copied, or assisted answers do not advance it. These are practical review settings, not proof of permanent mastery or a CEFR level. If a day is missed, retrieve overdue items at the next session. Never invent practice between sessions.
 
 ## Close and continue
 
 Use `templates/session-log.md`. Separate raw scores, learner-reported results, and inferred judgments. Record modality, source and item IDs, timing/replays/support, recurring errors, corrected examples, vocabulary context, preferences, next reviews, and the next Reading/Writing focus. Unknown is preferable to an invented value.
 
-Offer a copyable English summary for private export and one concrete next task. Never claim it was saved unless an authorized write succeeded. If the user requests local persistence, use ignored `private/` or the optional error-queue helper. Do not commit any learner history. A week ends with `templates/weekly-report.md` and a small plan adjustment supported by evidence.
+Offer a copyable English summary for private export and one concrete next task. Never claim it was saved unless an authorized write succeeded. If the user requests local persistence, use ignored `private/` or the optional review-queue helper. Do not commit any learner history. A week ends with `templates/weekly-report.md` and a small plan adjustment supported by evidence.

@@ -4,6 +4,8 @@ from datetime import date, timedelta
 import importlib.util
 import json
 from pathlib import Path
+import subprocess
+import sys
 import tempfile
 import unittest
 
@@ -84,10 +86,105 @@ class ReviewQueue(unittest.TestCase):
     def test_no_history_is_read_only_and_records_round_trip(self):
         with tempfile.TemporaryDirectory() as temporary:
             path = Path(temporary) / "private/progress.json"
-            self.assertEqual(coach.read_queue(path), {"version": 1, "errors": []})
+            self.assertEqual(coach.read_queue(path), {"version": 1, "errors": [], "vocabulary": []})
             self.assertFalse(path.exists())
             coach.save_queue(path, self.data)
-            self.assertEqual(coach.read_queue(path), self.data)
+            self.assertEqual(coach.read_queue(path), {**self.data, "vocabulary": []})
+
+
+class VocabularyQueue(unittest.TestCase):
+    def setUp(self):
+        self.data = {"version": 1, "errors": [], "vocabulary": []}
+        self.seed = json.loads((ROOT / "tests/fixtures/vocabulary-item.json").read_text())
+        self.item = coach.add_vocabulary(self.data, **self.seed, today=date(2026, 1, 1))
+
+    def retrieve(self, day, mode, outcome="correct", context=None):
+        return coach.review_vocabulary(self.item, mode, outcome,
+                                       context or f"New synthetic prompt and response on day {day}",
+                                       date(2026, 1, day))
+
+    def test_recognition_alone_never_establishes_retention(self):
+        for day in (2, 5, 12, 26):
+            self.retrieve(day, "recognition")
+        self.assertEqual(self.item["status"], "recognized")
+        self.assertEqual(self.item["successes_by_mode"]["production"], 0)
+        self.assertEqual(self.item["next_due"], "2026-02-09")
+
+    def test_retention_requires_delayed_original_production(self):
+        for day, mode in ((2, "recognition"), (5, "production"), (12, "recognition"), (26, "production")):
+            self.retrieve(day, mode)
+        self.assertEqual(self.item["status"], "retained")
+        self.assertEqual(self.item["next_due"], "2026-02-25")
+        coach.review_vocabulary(self.item, "production", "incorrect", "A later failed response", date(2026, 2, 25))
+        self.assertEqual(self.item["status"], "learning")
+        self.assertEqual(self.item["independent_successes"], 0)
+        self.assertEqual(self.item["successes_by_mode"]["production"], 0)
+        self.assertEqual(self.item["next_due"], "2026-02-26")
+
+    def test_same_day_hints_and_repeated_context_do_not_advance(self):
+        self.retrieve(1, "production")
+        self.retrieve(2, "production", "assisted")
+        self.assertEqual(self.item["independent_successes"], 0)
+        self.retrieve(3, "production", context="Independent answer in a particular context")
+        self.retrieve(6, "production", context="Independent answer in a particular context")
+        self.assertEqual(self.item["independent_successes"], 1)
+        self.assertFalse(self.item["events"][-1]["independent"])
+
+    def test_encounters_preserve_id_and_due_date_but_senses_are_separate(self):
+        self.retrieve(2, "production")
+        again = coach.add_vocabulary(self.data, **self.seed, today=date(2026, 1, 3))
+        self.assertEqual(again["id"], self.item["id"])
+        self.assertEqual(again["next_due"], "2026-01-05")
+        self.assertEqual(again["status"], "usable")
+        alternate = {**self.seed, "meaning": "a separate fictional sense for testing identity"}
+        distinct = coach.add_vocabulary(self.data, **alternate, today=date(2026, 1, 3))
+        self.assertNotEqual(distinct["id"], again["id"])
+        self.assertEqual(len(self.data["vocabulary"]), 2)
+
+    def test_invalid_or_backdated_reviews_preserve_evidence(self):
+        before = deepcopy(self.item)
+        with self.assertRaises(ValueError):
+            self.retrieve(2, "unsupported")
+        with self.assertRaises(ValueError):
+            coach.review_vocabulary(self.item, "production", "correct", "", date(2026, 1, 2))
+        with self.assertRaises(ValueError):
+            coach.review_vocabulary(self.item, "production", "correct", "A response", date(2025, 12, 31))
+        self.assertEqual(self.item, before)
+
+    def test_old_record_is_read_without_rewriting_or_losing_errors(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            path = Path(temporary) / "progress.json"
+            original = '{"version": 1, "errors": [{"id": "synthetic-error"}]}'
+            path.write_text(original)
+            migrated = coach.read_queue(path)
+            self.assertEqual(migrated["errors"], [{"id": "synthetic-error"}])
+            self.assertEqual(migrated["vocabulary"], [])
+            self.assertEqual(path.read_text(), original)
+
+    def test_cli_saves_privately_and_keeps_missed_reviews_due(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            command = [sys.executable, str(ROOT / "tools/coach.py"), "--data-dir", temporary]
+            absent = subprocess.run([*command, "vocabulary-due"], text=True, capture_output=True, check=True)
+            self.assertEqual(json.loads(absent.stdout), [])
+            self.assertFalse((Path(temporary) / "progress.json").exists())
+            flags = [flag for key, value in self.seed.items() for flag in ("--" + key, value)]
+            added = subprocess.run([*command, "--today", "2026-01-01", "add-vocabulary", *flags],
+                                   text=True, capture_output=True, check=True)
+            item = json.loads(added.stdout)
+            due = subprocess.run([*command, "--today", "2026-01-09", "vocabulary-due"],
+                                 text=True, capture_output=True, check=True)
+            self.assertEqual(json.loads(due.stdout)[0]["id"], item["id"])
+            reviewed = subprocess.run([*command, "--today", "2026-01-09", "review-vocabulary", item["id"],
+                                       "--mode", "production", "--outcome", "correct", "--context",
+                                       "New theatre context; We allocate funds to costumes."],
+                                      text=True, capture_output=True, check=True)
+            self.assertEqual(json.loads(reviewed.stdout)["status"], "usable")
+            self.assertEqual(json.loads(reviewed.stdout)["next_due"], "2026-01-12")
+
+    def test_recording_new_encounter_does_not_make_same_day_recall_independent(self):
+        coach.add_vocabulary(self.data, **self.seed, today=date(2026, 1, 3))
+        self.retrieve(3, "production")
+        self.assertEqual(self.item["independent_successes"], 0)
 
 
 if __name__ == "__main__":

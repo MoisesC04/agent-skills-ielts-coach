@@ -54,6 +54,22 @@ adaptation:
   missed_days: resume without catch-up penalties
   review_frequency: weekly
   provisional_band_requires: suitable evidence and accessible official descriptors
+vocabulary:
+  new_items_per_session_max: 3
+  due_items_before_new_items: true
+  standard_opening_retrieval_max: 2
+  busy_opening_retrieval_max: 1
+  remaining_due_items: reuse within speaking and writing; carry unfinished reviews forward
+  fields: [expression, meaning, collocation, source, learner_example, status, next_due]
+  modes: [recognition, production]
+  initial_review_delay_days: 1
+  after_first_three_successes_days: [3, 7, 14]
+  recognition_only_max_interval_days: 14
+  retained_after: four independent delayed successes including at least two production attempts
+  retained_spot_check_days: 30
+  incorrect_interval_days: 1
+  missed_day_policy: review overdue items next session; do not reset or claim practice occurred
+  same_day_or_copied_response_advances_mastery: false
 weeks:
   - week: 1
     focus: Baseline all modalities; task instructions; establish two review priorities

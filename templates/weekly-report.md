@@ -17,7 +17,9 @@ Export privately; do not commit a completed report.
 
 - Recurring patterns to retrieve next week (IDs, examples, due dates):
 - Patterns transferred successfully to new contexts:
-- Vocabulary reused appropriately in context:
+- Vocabulary counts by status: learning / recognized / usable / retained:
+- Vocabulary due / reviewed / still overdue (recognition and production separately):
+- Vocabulary reused appropriately in new contexts (IDs and evidence):
 - Learner preferences confirmed or changed:
 - One plan adjustment and the evidence for it:
 - Next week's practical schedule (40 minutes; 20-minute fallback):
