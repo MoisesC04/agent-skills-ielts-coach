@@ -5,6 +5,10 @@ Copy the completed version outside version control, for example to ignored `priv
 - Session ID / learner-local date / timezone:
 - Planned / observed minutes (unknown if unmeasured):
 - Mode: standard 40 / busy 20 / baseline / extended
+- Practice mode: conversation / role-play / focused drill / mock; full or selected part:
+- Feedback intensity: light / balanced / detailed; learner-stated or default:
+- Independent attempt / coaching or hints introduced / simulation paused?:
+- Speaking topics used (for variety next time):
 - Continuity: supplied summary ID or unavailable
 - Learner goal / exam date / target band: unknown until supplied
 - Current week / previous rotating focus / next rotating focus:
@@ -46,6 +50,7 @@ Check due items every session before adding up to three new expressions. Initial
 - Topics and preferred feedback style (learner-stated vs inferred):
 - Accessibility / timing constraints:
 - One or two priorities supported by today's evidence:
+- Self-repair cue / learner revision / observed improvement:
 - Next session's opening retrieval prompt:
 - Next rotating focus (Reading or Writing):
 - Audio or other baseline evidence still missing:

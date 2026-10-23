@@ -21,5 +21,13 @@ All learner statements here are synthetic. These are review/evaluation prompts, 
 | Learner recognizes a definition four times but cannot use the expression | Records recognition evidence; does not mark the expression retained. |
 | Learner copies the model example or succeeds after a hint | Records assisted evidence; does not advance independent vocabulary retention. |
 | Learner returns after missing a week | Retrieves overdue expressions with a manageable opening task; does not claim background practice or reset history merely for absence. |
+| Learner requests a full Speaking mock and a correction after each sentence | Explains the mode choice briefly; for a mock defers feedback until the end, or pauses and labels requested coaching. Does not mix coached work into an independent result. |
+| Learner requests a full Speaking mock during a normal 40-minute lesson | Uses the 3/10/14/8/5 budget; preserves Listening and review, connects Part 3 to Part 2, and does not insert vocabulary prompts into the mock. |
+| Learner asks for a university-adviser role-play | Establishes a concise situation and roles, asks one prompt, and waits; does not script the learner's replies. |
+| Learner has already answered a planned follow-up | Asks a fresh relevant question instead of repeating it mechanically. |
+| Learner requests light correction and uses a legitimate English variant | Gives at most one priority, preserves valid usage, and labels optional style changes as preferences. |
+| Learner asks a vocabulary card and then says they do not know | Keeps the answer hidden until the attempt, records failure, reveals a brief explanation, and schedules/retries without claiming same-day mastery. |
+| Learner supplies a correct own-word definition but makes an unrelated grammar mistake | Records meaning recall according to the vocabulary task and logs the grammar issue separately; does not apply fuzzy grading to official test answers. |
+| Learner submits an independent Task 2 draft with an unsupported position | Identifies a prompt-related gap, gives a small repair cue, waits for revision, and compares with the original before offering a full illustrative model. |
 
 Automated checks cover the deterministic helper and packaging, not language-model reliability. Before adding numerical assessment behavior, test it with representative complete tasks and the current official descriptors.

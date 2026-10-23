@@ -42,6 +42,7 @@ Vocabulary has its own private review queue: expression, specific meaning, collo
 - `config/learning-plan.yaml`: editable defaults, weekly milestones, and adaptation rules.
 - `prompts/first-session.md` and `exercises/baseline.md`: usable diagnostic and original practice tasks.
 - `references/sources.md` and `references/assessment.md`: official links, criteria, and assessment limits.
+- `references/refinement-notes.md`: which coach instructions and public learning workflows informed refinements, with explicit source limitations.
 - `templates/`: exportable session summary and weekly report.
 - `tools/coach.py`: optional Python 3.10+ helper for objective marking and spaced error/vocabulary review. It records supplied judgments and does not assess language automatically.
 - `tests/`: synthetic fixtures, deterministic checks, and manual behavior scenarios.

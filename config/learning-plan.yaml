@@ -10,6 +10,8 @@ learner:
   target_band: null
   preferred_topics: []
   correction_preference: feedback after a complete turn
+  correction_intensity: balanced
+  practice_mode: infer from the request; conversation or a focused drill by default
   audio_access: unknown
   timezone: ask only when saving dated records
 routine_minutes:
@@ -31,6 +33,12 @@ routine_minutes:
     speaking: 10
     reading: 6
     writing: 6
+    review_and_export: 5
+  full_speaking_mock:
+    check_in: 3
+    listening: 10
+    speaking: 14
+    rotating_reading_or_writing: 8
     review_and_export: 5
 rotation:
   daily: [listening, speaking, review]
@@ -70,6 +78,8 @@ vocabulary:
   incorrect_interval_days: 1
   missed_day_policy: review overdue items next session; do not reset or claim practice occurred
   same_day_or_copied_response_advances_mastery: false
+  card_cycle: prompt only; learner attempt; answer reveal; feedback; contextual reuse
+  failed_card: brief relearning and same-session retry; keep next-day delayed review
 weeks:
   - week: 1
     focus: Baseline all modalities; task instructions; establish two review priorities

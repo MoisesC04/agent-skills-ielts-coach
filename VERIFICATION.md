@@ -22,3 +22,10 @@ The repository is now public. Learner records remain outside version control. Vo
 - Repository validation and the updated progress-tracker skill manifest validation passed.
 - Four synthetic tutoring scenarios were manually answered and self-reviewed in the implementation session: due vocabulary before new items, recognition without production, copied examples, and resuming after missed days. This walkthrough is not an independent model evaluation; the broader scenario suite remains available for real-session testing.
 - Existing lesson time budgets remain unchanged. No real learner vocabulary, study records, or Drive data were created or published in this update.
+
+## Teaching-instruction refinement — 2026-10-23
+
+- Inspected the available English Speaking Coach and IELTS Speaking Simulator guidance. Quizlet refinement uses public learning-mode documentation. IELTS Writing Coach's internal instructions were unavailable; official IELTS Writing resources and the available language-feedback guidance were used instead. See `references/refinement-notes.md` for source boundaries.
+- Refined conversation/role-play/drill/mock routing, correction intensity, deferred mock feedback, self-repair and writing revision, and prompt/attempt/reveal vocabulary practice. No third-party private prompt, topic bank, plugin installation, or new runtime dependency was added.
+- All 18 helper tests, all six bundled skill-manifest validations, and repository validation passed. YAML parsing confirmed the standard/baseline/busy budgets and the new forty-minute full-Speaking-mock budget.
+- Eight additional synthetic teaching scenarios were manually answered and self-reviewed by the implementing model, including conflicting mock/coaching preferences, role-play, light feedback, failed vocabulary recall, and targeted writing revision. This was not an independent evaluation; actual-session refinement remains necessary.
