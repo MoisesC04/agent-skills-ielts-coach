@@ -27,7 +27,7 @@ Pronunciation: not assessed unless genuine audio was accessible; note supporting
 | --- | --- | --- | --- | --- |
 | | | | | active / recurring / stabilizing / stabilized |
 
-For each retrieval, record a new context, the learner's answer, correct/incorrect/assisted, and whether it was independent. Same-day corrections do not count as spaced mastery. Use 1, 3, 7, 14 day intervals after independent successes; reset to 1 day after an error. After four independent delayed successes, spot-check after 30 days. Dates not known? Record the next session instead of inventing a date.
+For each retrieval, record a new context, the learner's answer, correct/incorrect/assisted, and whether it was independent. Same-day corrections do not count as spaced mastery. Schedule the initial retrieval after 1 day, then use 3, 7, and 14 days after the first three independent delayed successes. Reset to 1 day after an error. After four independent delayed successes, spot-check after 30 days. Dates not known? Record the next session instead of inventing a date.
 
 ## Vocabulary in context
 

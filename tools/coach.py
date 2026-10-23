@@ -10,7 +10,7 @@ import sys
 import uuid
 
 ROOT = Path(__file__).resolve().parents[1]
-INTERVALS = (1, 3, 7, 14)
+SUCCESS_INTERVALS = (3, 7, 14)
 
 
 def normalized(text):
@@ -100,7 +100,7 @@ def review(error, outcome, context, today):
                      next_due=(today + timedelta(days=1)).isoformat())
     elif independent:
         successes = error["independent_successes"] + 1
-        interval = INTERVALS[successes] if successes < len(INTERVALS) else 30
+        interval = SUCCESS_INTERVALS[successes - 1] if successes <= len(SUCCESS_INTERVALS) else 30
         error.update(independent_successes=successes,
                      status="stabilized" if successes >= 4 else "stabilizing",
                      next_due=(today + timedelta(days=interval)).isoformat())
