@@ -1,0 +1,10 @@
+{
+  "task_id": "original-library-pilot-v1",
+  "source": "exercises/baseline.md; original fictional training, not a calibrated IELTS test",
+  "items": [
+    {"id": "1", "accepted": ["FALSE"], "evidence": "Entry required an online booking."},
+    {"id": "2", "accepted": ["TRUE"], "evidence": "165 in week four exceeds 120 in week one."},
+    {"id": "3", "accepted": ["NOT GIVEN"], "evidence": "The pilot did not measure examination results; improvement is neither stated nor contradicted."},
+    {"id": "4", "accepted": ["June"], "max_words": 1, "evidence": "The decision is scheduled for June."}
+  ]
+}

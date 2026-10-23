@@ -1,0 +1,91 @@
+version: 1
+language: English
+exam: IELTS Academic
+long_term_goal: CEFR C1
+guaranteed_outcome: false
+planning_horizon_weeks: 12
+learner:
+  baseline: unknown
+  exam_date: null
+  target_band: null
+  preferred_topics: []
+  correction_preference: feedback after a complete turn
+  audio_access: unknown
+  timezone: ask only when saving dated records
+routine_minutes:
+  standard:
+    check_in: 3
+    listening: 10
+    speaking: 10
+    rotating_reading_or_writing: 12
+    review_and_export: 5
+  busy:
+    check_in: 2
+    listening: 5
+    speaking: 5
+    rotating_reading_or_writing: 5
+    review_and_export: 3
+  baseline:
+    check_in: 3
+    listening: 10
+    speaking: 10
+    reading: 6
+    writing: 6
+    review_and_export: 5
+rotation:
+  daily: [listening, speaking, review]
+  after_baseline: [reading, writing]
+  advance_on: completed session including a completed busy session
+  skipped_session_advances: false
+  blocked_audio: record listening as blocked and prioritize the next available audio attempt
+review:
+  correct_intervals_days: [1, 3, 7, 14]
+  incorrect_interval_days: 1
+  due_before_new_items: true
+  independent_successes_to_stabilize: 4
+  same_day_retry_advances_interval: false
+  stabilized_patterns: retain and spot-check after 30 days
+adaptation:
+  reduce_support_after: two independent successful attempts
+  increase_only_one_challenge_at_a_time: true
+  difficulty_below_accessible_level: use shorter tasks then fade scaffolding
+  missed_days: resume without catch-up penalties
+  review_frequency: weekly
+  provisional_band_requires: suitable evidence and accessible official descriptors
+weeks:
+  - week: 1
+    focus: Baseline all modalities; task instructions; establish two review priorities
+    evidence: Audio-based listening answers; speaking modality; original reading; short writing
+  - week: 2
+    focus: Listening details and distractors; speaking expansion; reading evidence and writing overview
+    evidence: Comparable short sets and independent correction retries
+  - week: 3
+    focus: Paraphrase and reference; Part 2 structure; Task 1 comparisons
+    evidence: New-topic transfer and an original table report
+  - week: 4
+    focus: First checkpoint and rebalance using observed gaps
+    evidence: Comparable samples; distinguish assistance from independent performance
+  - week: 5
+    focus: Academic lecture notes; reading headings; Task 2 position and paragraph development
+    evidence: Task-specific raw marks and a developed argument
+  - week: 6
+    focus: Speaking Part 3 reasoning; cautious claims; complex sentence control
+    evidence: Two unseen contexts for recurring patterns
+  - week: 7
+    focus: Reading inference and Not Given; source-linked listening review; Writing cohesion
+    evidence: Evidence locations and distractor explanations
+  - week: 8
+    focus: Second checkpoint; schedule an extended section only if learner has time
+    evidence: Timed comparable work with conditions recorded
+  - week: 9
+    focus: Precision and flexible vocabulary; Task 1 processes or maps; Task 2 qualification
+    evidence: Contextual vocabulary reuse and appropriate register
+  - week: 10
+    focus: Stamina and pacing; reduce coaching during assessment attempts
+    evidence: Extended section if available; otherwise labelled partial practice
+  - week: 11
+    focus: Target persistent weaknesses; mix unfamiliar topics and delayed retrieval
+    evidence: Previously recurring errors tested after a delay
+  - week: 12
+    focus: Compare baseline with current evidence and plan the next cycle
+    evidence: All available modalities; report remaining gaps and uncertainty
